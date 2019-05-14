@@ -8,6 +8,13 @@ public class Movement : MonoBehaviour
     float horiz;
     float vert;
     public Rigidbody2D body;
+    public Rigidbody2D curryBody;
+    public bool levelDone;
+
+    void Start()
+    {
+        levelDone = false;
+    }
     
     void Update()
     {
@@ -17,6 +24,14 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        body.velocity = new Vector2(horiz * speed, vert * speed);
+        if(levelDone != true)
+        {
+            body.velocity = new Vector2(horiz * speed, vert * speed);
+        }
+        else
+        {
+            body.velocity = new Vector2(0f, 0f);
+            curryBody.velocity = new Vector2(0f, 0f);
+        }
     }
 }
